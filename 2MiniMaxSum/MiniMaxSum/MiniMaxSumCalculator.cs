@@ -10,20 +10,11 @@ namespace MiniMaxSum
         {
             long minSum = 0;
             long maxSum = 0;
+            numbers.Sort();
             
             for (var index = 0; index < numbers.Count; index++) {
-                long sum = 0;
-                var indexToSum = 0;
-                
-                while(indexToSum < numbers.Count) {
-                    if (index!=indexToSum) {
-                        sum += numbers[indexToSum];
-                    }
-                    indexToSum++;
-                }
-                
-                if (minSum > sum || index == 0) { minSum = sum; }
-                if (maxSum < sum) { maxSum = sum; }
+                if (index != numbers.Count - 1) { minSum += numbers.ElementAt(index); }
+                if (index != 0) { maxSum += numbers.ElementAt(index); }
             }
             
             var results = new List<long> { minSum, maxSum };
